@@ -1,0 +1,52 @@
+Meaning of Abstraction
+Abstraction is the process of simplifying complex systems by focusing only on the essential features while hiding the unnecessary details. It allows us to interact with objects or components at a high level without worrying about how they work internally. For example, in the program, the Journal class provides methods like AddEntry() or DisplayAll() to manage journal entries. The user doesn’t need to know how the data is stored or displayed—just how to call these methods.
+
+Benefit of Abstraction
+One major benefit of abstraction is that it makes the program easier to use, manage, and maintain. By hiding the internal details, developers can make changes to the inner workings without affecting how the program is used. For instance, if the way entries are saved to a file needs to change, the rest of the code that interacts with the Journal class won’t be impacted. This separation makes debugging and updating the program much simpler.
+
+Application of Abstraction
+In the program, abstraction is applied by dividing the responsibilities across different classes like Journal, Entry, and PromptGenerator. Each class is responsible for a specific part of the program. For example:
+public class Journal
+{
+    private List<Entry> _entries = new List<Entry>();
+
+    public void AddEntry(Entry newEntry)
+    {
+        _entries.Add(newEntry);
+    }
+
+    public void DisplayAll()
+    {
+        foreach (var entry in _entries)
+        {
+            entry.Display();
+        }
+    }
+
+    public void SaveToFile(string filename)
+    {
+        using (StreamWriter writer = new StreamWriter(filename))
+        {
+            foreach (var entry in _entries)
+            {
+                writer.WriteLine(entry.ToFileFormat());
+            }
+        }
+    }
+}
+
+
+
+Journal focuses on managing journal entries.
+Entry defines what a journal entry is and handles its representation.
+PromptGenerator manages prompts for the user.
+This division ensures that each part of the program handles its own tasks while exposing only the necessary functionality to the rest of the program.
+
+Why Abstraction is Important
+Abstraction is crucial because it simplifies complexity, making programs easier to understand, maintain, and extend. It allows developers to work on individual components without needing to know the internal details of other parts. In a real-world scenario, this is especially important for teamwork—one developer can work on the Journal functionality while another works on the PromptGenerator, without worrying about the internals of each other's code. This modular approach saves time, reduces errors, and makes the codebase more scalable and adaptable to changes.
+
+
+
+
+
+
