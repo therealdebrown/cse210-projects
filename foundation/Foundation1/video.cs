@@ -53,8 +53,14 @@ public class Video
         Comments.Add(comment);
     }
 
-    public void DisplayComments()
+    public void DisplayDetails()
     {
+        Console.WriteLine($"Title: {Title}");
+        Console.WriteLine($"Description: {Description}");
+        Console.WriteLine($"Views: {ViewCount}");
+        Console.WriteLine($"Likes: {LikeCount}");
+        Console.WriteLine($"Dislikes: {DislikeCount}");
+        Console.WriteLine("\nComments:");
         foreach (var comment in Comments)
         {
             comment.DisplayCommentDetails();

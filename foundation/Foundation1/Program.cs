@@ -4,40 +4,45 @@ class Program
 {
     static void Main(string[] args)
     {
-        Video video = new Video("Sample Video", "This is a description of the video.");
-        video.IncrementView();
-        video.AddLike();
+        List<Video> videos = new List<Video>();
 
-        Console.WriteLine($"Title: {video.Title}");
-        Console.WriteLine($"Description: {video.Description}");
-        Console.WriteLine($"Views: {video.ViewCount}");
-        Console.WriteLine($"Likes: {video.LikeCount}");
-        Console.WriteLine($"Dislikes: {video.DislikeCount}");
+        Video video1 = new Video("Introduction to Database", "You will learn the basics of database.");
+        Video video2 = new Video("English with Lucy", "Dive deeper into advanced C1 level.");
+        Video video3 = new Video("introduction to programming with classes", "Understand the basics of programming with classes.");
 
-        Comment comment1 = new Comment("Amazing video!", "User1");
-        video.AddComment(comment1);
+        videos.Add(video1);
+        videos.Add(video2);
+        videos.Add(video3);
 
-        Comment reply1 = new Comment("Thank you!", "User2", 1);
-        video.AddComment(reply1);
+        video1.AddComment(new Comment("Great! I have learn some basics with this video.", "User1"));
+        video1.AddComment(new Comment("I would really love to learn more about dictionaries. Do you have a video on them?", "User2"));
+        video1.AddComment(new Comment("Working on diagrams was an amazing experience. I highly recommend this video.", "User3"));
 
-         Comment comment2 = new Comment("Good graphics!", "User1");
-        video.AddComment(comment2);
+        video2.AddComment(new Comment("Good approach! The vocabulary explanations are very useful.", "Stan24"));
+        video2.AddComment(new Comment("I loved the part about idioms.", "Vortex2"));
+        video2.AddComment(new Comment("Could you make a video on phrasal verbs?", "Annie"));
 
-        Comment reply2 = new Comment("Moise made the graphics!", "User2", 1);
-        video.AddComment(reply2);
+        video3.AddComment(new Comment("This made understanding OOP concepts so much easier. Thanks", "Student123"));
+        video3.AddComment(new Comment("Good explanation of classes. Easy to understand.", "Randy25"));
+        video3.AddComment(new Comment("Loved the examples! Helped me grasp the basics of classes.", "Learner123"));
 
-         Comment comment3 = new Comment("Always on top!", "User1");
-        video.AddComment(comment3);
+        video1.IncrementView();
+        video1.IncrementView();
+        video1.AddLike();
 
-        Comment reply3 = new Comment("Best comment!", "User2", 1);
-        video.AddComment(reply3);
+        video2.IncrementView();
+        video2.AddLike();
+        video2.AddLike();
+        video2.AddDislike();
 
-        Console.WriteLine("\nComments:");
-        video.DisplayComments();
+        video3.IncrementView();
+        video3.IncrementView();
+        video3.AddLike();
 
-        comment1.EditComment("Amazing video!");
-        comment1.DeleteComment();
-        Console.WriteLine("\nUpdated Comments:");
-        video.DisplayComments();
+        foreach (var video in videos)
+        {
+            Console.WriteLine("\n--- Video Details ---");
+            video.DisplayDetails();
+        }
     }
 }

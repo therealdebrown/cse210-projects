@@ -5,31 +5,23 @@ namespace OrderManagementSystem
 { 
     public class Customer
     {
-        public string Name { get; set; }
-        public string Address { get; set; }
-        public string CustomerID { get; set; }
+        private string Name;
+        private Address CustomerAddress;
 
-        public Customer(string name, string address, string customerID)
+        public Customer(string name, Address address)
         {
             Name = name;
-            Address = address;
-            CustomerID = customerID;
-        }
-
-        public bool ValidateDetails()
-        {
-            return !string.IsNullOrWhiteSpace(Name) && !string.IsNullOrWhiteSpace(Address);
+            CustomerAddress = address;  
         }
 
         public string GetCustomerInfo()
         {
-            return $"Customer ID: {CustomerID}, Name: {Name}, Address: {Address}";
+            return $"Name: {Name}, Address: {CustomerAddress.GetFullAddress()}";
         }
 
-        public void UpdateCustomerInfo(string name, string address)
+        public string GetShippingLabel()
         {
-            Name = name;
-            Address = address;
+            return $"Shipping To: {Name}, {CustomerAddress.GetFullAddress()}";
         }
     }
 }

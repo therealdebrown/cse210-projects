@@ -5,9 +5,9 @@ namespace OrderManagementSystem
 {
     public class Product
     {
-        public string ProductName { get; set; }
-        public string ProductID { get; set; }
-        public double Price { get; set; }
+        private string ProductName;
+        private string ProductID;
+        private double Price;
 
         public Product(string productName, string productID, double price)
         {
@@ -19,6 +19,16 @@ namespace OrderManagementSystem
         public string GetProductDetails()
         {
             return $"Product ID: {ProductID}, Name: {ProductName}, Price: {Price:C}";
+        }
+
+         public double GetPrice()
+        {
+            return Price;
+        }
+
+        public string GetName()
+        {
+            return ProductName;
         }
     }
 }

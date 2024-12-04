@@ -5,12 +5,14 @@ namespace OrderManagementSystem
 {     
     public class Order
     {
-        public string OrderID { get; set; }
-        public Dictionary<Product, int> ProductQuantities { get; private set; } = new Dictionary<Product, int>();
+        private string OrderID;
+        private Customer CustomerInfo;
+        public Dictionary<Product, int> ProductQuantities = new Dictionary<Product, int>();
 
-        public Order(string orderID)
+        public Order(string orderID, Customer customer)
         {
             OrderID = orderID;
+            CustomerInfo = customer;
         }
 
         public void AddProduct(Product product, int quantity)
@@ -25,33 +27,37 @@ namespace OrderManagementSystem
             }
         }
 
+        public double CalculateTotalCost()
+        {
+            double total = 0;
+            foreach (var item in ProductQuantities)
+            {
+                total += item.Key.GetPrice() * item.Value;
+            }
+            return total;
+        }
+
+        public string GetPackingLabel()
+        {
+            string label = $"Order ID: {OrderID}\n";
+            foreach (var item in ProductQuantities)
+            {
+                label += $"Product: {item.Key.GetName()}, Quantity: {item.Value}\n";
+            }
+            return label;
+        }
+
+        public string GetShippingLabel()
+        {
+            return CustomerInfo.GetShippingLabel();
+        }
+
         public void RemoveProduct(Product product)
         {
             if (ProductQuantities.ContainsKey(product))
             {
                 ProductQuantities.Remove(product);
             }
-        }
-
-        public double CalculateTotalCost()
-        {
-            double total = 0;
-            foreach (var item in ProductQuantities)
-            {
-                total += item.Key.Price * item.Value;
-            }
-            return total;
-        }
-
-        public string GenerateOrderSummary()
-        {
-            string summary = $"Order ID: {OrderID}\n";
-            foreach (var item in ProductQuantities)
-            {
-                summary += $"{item.Key.ProductName} (x{item.Value}) - {item.Key.Price * item.Value:C}\n";
-            }
-            summary += $"Total Cost: {CalculateTotalCost():C}\n";
-            return summary;
         }
     }
 }
