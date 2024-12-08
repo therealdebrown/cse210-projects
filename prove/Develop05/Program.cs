@@ -27,12 +27,6 @@ class Program
                     activity = new ReflectingActivity();
                     break;
                 case "4":
-                    activity = new ReflectingActivity();
-                    break;
-                case "5":
-                    activity = new ReflectingActivity();
-                    break;
-                case "6":
                     Console.WriteLine("Goodbye!");
                     return;
                 default:

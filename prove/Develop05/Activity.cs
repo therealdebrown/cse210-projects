@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Threading;
 
 public abstract class Activity
 {
@@ -6,31 +8,35 @@ public abstract class Activity
     protected string _description;
     protected int _duration;
 
-    public Activity(string name, string description, int duration)
+    public Activity(string name, string description)
     {
         _name = name;
         _description = description;
-        _duration = duration;
     }
 
     public void DisplayStartingMessage()
     {
-        Console.WriteLine($"Starting {_name} activity......");
+        Console.WriteLine($"\nStarting {_name} Activity");
         Console.WriteLine(_description);
+        Console.Write("\nEnter the duration of the activity (in seconds): ");
+        _duration = int.Parse(Console.ReadLine());
+        Console.WriteLine("\nGet ready to begin...");
+        ShowSpinner(3);
     }
 
     public void DisplayEndingMessage()
     {
-        Console.WriteLine($"Ending {_name} activity. Well done!");
+        Console.WriteLine("\nGood job! You have completed the activity.");
+        Console.WriteLine($"You completed the {_name} Activity for {_duration} seconds.");
+        ShowSpinner(3);
     }
 
     public void ShowSpinner(int seconds)
     {
-        Console.Write("Loading......");
         for (int i = 0; i < seconds; i++)
         {
             Console.Write(".");
-            System.Threading.Thread.Sleep(2000);
+            Thread.Sleep(1000);
         }
         Console.WriteLine();
     }
@@ -40,7 +46,7 @@ public abstract class Activity
         for (int i = seconds; i > 0; i--)
         {
             Console.WriteLine(i);
-            System.Threading.Thread.Sleep(1000);
+            Thread.Sleep(1000);
         }
         Console.WriteLine("Go!");
     }

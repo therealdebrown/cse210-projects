@@ -1,16 +1,16 @@
-using System.Collections.Generic;
-
 public class ListingActivity : Activity
 {
-    private List<string> _prompts = new List<string> 
+    private List<string> _prompts = new List<string>
     {
-        "Name things you are grateful for.",
-        "List your favorite hobbies.",
-        "Write down things that make you happy."
+        "Who are people that you appreciate?",
+        "What are personal strengths of yours?",
+        "Who are people that you have helped this week?",
+        "When have you felt peace this month?",
+        "Who are some of your personal heroes?"
     };
 
     public ListingActivity() 
-        : base("Listing", "An activity to list items and reflect.", 60) { }
+        : base("Listing", "This activity will help you reflect on the good things in your life by having you list as many items as you can in a certain area.") { }
 
     private string GetRandomPrompt()
     {
@@ -18,29 +18,25 @@ public class ListingActivity : Activity
         return _prompts[random.Next(_prompts.Count)];
     }
 
-    private List<string> GetListFromUser()
-    {
-        List<string> userResponses = new List<string>();
-        Console.WriteLine("Start listing. Press Enter after each item. Type 'done' to finish:");
-        while (true)
-        {
-            string response = Console.ReadLine();
-            if (response.ToLower() == "done") break;
-            userResponses.Add(response);
-        }
-        return userResponses;
-    }
-
     public override void Run()
     {
         DisplayStartingMessage();
-        string prompt = GetRandomPrompt();
-        Console.WriteLine($"Prompt: {prompt}");
+
+        Console.WriteLine($"Prompt: {GetRandomPrompt()}");
         ShowCountdown(3);
 
-        List<string> responses = GetListFromUser();
-        Console.WriteLine($"You listed {responses.Count} items. Great job!");
+        Console.WriteLine("Start listing your responses. Type 'done' to finish early:");
+        int count = 0;
+        DateTime endTime = DateTime.Now.AddSeconds(_duration);
 
+        while (DateTime.Now < endTime)
+        {
+            string response = Console.ReadLine();
+            if (response.ToLower() == "done") break; // Creative: Allows user to finish early
+            count++;
+        }
+
+        Console.WriteLine($"You listed {count} items. Great work!");
         DisplayEndingMessage();
     }
 }
