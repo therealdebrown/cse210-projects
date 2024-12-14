@@ -1,3 +1,4 @@
+//Stretch 1 
 public class LevelTracker
 {
     private int _totalPoints;
@@ -14,7 +15,6 @@ public class LevelTracker
         _totalPoints += points;
         Console.WriteLine($"Points updated: {_totalPoints} points.");
 
-            // Check if the user levels up
         if (_totalPoints >= _level * 100)
         {
             _level++;
@@ -25,7 +25,7 @@ public class LevelTracker
     public void DeductPoints(int points)
     {
         _totalPoints -= points;
-        if (_totalPoints < 0) _totalPoints = 0; // Ensure points don't go below zero
+        if (_totalPoints < 0) _totalPoints = 0; 
         Console.WriteLine($"Points deducted: {_totalPoints} points.");
     }
 

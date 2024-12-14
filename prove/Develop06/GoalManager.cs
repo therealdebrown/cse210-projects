@@ -44,7 +44,7 @@ public class GoalManager
                 _goals.Add(new ChecklistGoal(name, description, points, target, bonus));
                 break;
             case 4:
-                _goals.Add(new NegativeGoal(name, description, -points)); // Negative points
+                _goals.Add(new NegativeGoal(name, description, -points)); 
                 break;
             default:
                 Console.WriteLine("Invalid choice.");

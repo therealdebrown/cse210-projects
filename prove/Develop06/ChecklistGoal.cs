@@ -1,8 +1,8 @@
 public class ChecklistGoal : Goal
 {
-    private int _target; // Number of steps to complete the goal
-    private int _amountCompleted; // Steps completed
-    private int _bonus; // Bonus points when the goal is fully completed
+    private int _target; 
+    private int _amountCompleted; 
+    private int _bonus; 
 
     public ChecklistGoal(string name, string description, int points, int target, int bonus)
         : base(name, description, points)

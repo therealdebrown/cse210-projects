@@ -1,3 +1,4 @@
+//Stretch 2
 public class NegativeGoal : Goal
 {
     public NegativeGoal(string name, string description, int points)
@@ -12,7 +13,7 @@ public class NegativeGoal : Goal
 
     public override bool IsComplete()
     {
-        return false; // Negative goals never complete
+        return false; 
     }
 
     public override string GetDetailsString()
